@@ -3,16 +3,26 @@ import * as d3 from "d3";
 
 const NeuralNetworkVisualization = () => {
   const svgRef = useRef(null);
+  const wrapperRef = useRef(null);
 
   useEffect(() => {
     const svg = d3.select(svgRef.current);
     svg.selectAll("*").remove();
 
-    const width = 900;
-    const height = 500;
+    const width = wrapperRef.current.clientWidth;
+    const height = wrapperRef.current.clientHeight;
     const layers = 5;
     const nodesPerLayer = [5, 5, 6, 5, 5];
     const nodeSize = [20, 15, 15, 15, 20];
+
+    const zoom = d3
+      .zoom()
+      .scaleExtent([0.5, 2])
+      .on("zoom", (event) => {
+        g.attr("transform", event.transform);
+      });
+
+    svg.call(zoom);
 
     const xScale = d3
       .scaleLinear()
@@ -48,38 +58,34 @@ const NeuralNetworkVisualization = () => {
       }
     });
 
-    svg
-      .append("text")
+    const g = svg.append("g");
+
+    g.append("text")
       .attr("x", xScale(0))
       .attr("y", 50)
       .attr("fill", "white")
-      .attr("font-size", "20px")
-      .attr("font-weight", "bold")
+      .attr("font-size", "16px")
       .attr("text-anchor", "middle")
       .text("Input Layer");
 
-    svg
-      .append("text")
+    g.append("text")
       .attr("x", xScale(2))
       .attr("y", 150)
       .attr("fill", "white")
-      .attr("font-size", "20px")
-      .attr("font-weight", "bold")
+      .attr("letter-spacing", "2.75px")
+      .attr("font-size", "16px")
       .attr("text-anchor", "middle")
       .text("Hidden Layers");
 
-    svg
-      .append("text")
+    g.append("text")
       .attr("x", xScale(4))
       .attr("y", 50)
       .attr("fill", "white")
-      .attr("font-size", "20px")
-      .attr("font-weight", "bold")
+      .attr("font-size", "16px")
       .attr("text-anchor", "middle")
-      .text("Output   ");
+      .text("Output Layer");
 
-    const line = svg
-      .selectAll("line")
+    g.selectAll("line")
       .data(links)
       .enter()
       .append("line")
@@ -91,8 +97,7 @@ const NeuralNetworkVisualization = () => {
       .attr("stroke-width", 2)
       .style("opacity", 0.5);
 
-    const circles = svg
-      .selectAll("circle")
+    g.selectAll("circle")
       .data(nodes)
       .enter()
       .append("circle")
@@ -105,30 +110,39 @@ const NeuralNetworkVisualization = () => {
       const mouseX = d3.pointer(event, this)[0];
       const layerIndex = Math.round(xScale.invert(mouseX));
 
-      line.style("opacity", (d) =>
+      g.selectAll("line").style("opacity", (d) =>
         nodes.find((n) => n.id === d.source).layer === layerIndex ||
         nodes.find((n) => n.id === d.target).layer === layerIndex
           ? 1
           : 0.5
       );
-      circles.style("fill", (d) =>
+      g.selectAll("circle").style("fill", (d) =>
         d.layer === layerIndex ? "#82ca9d" : "white"
       );
     });
 
     svg.on("mouseout", function () {
-      line.style("opacity", 0.5);
-      circles.style("fill", "white");
+      g.selectAll("line").style("opacity", 0.5);
+      g.selectAll("circle").style("fill", "white");
     });
   }, []);
 
   return (
-    <svg
-      ref={svgRef}
-      width={900}
-      height={500}
-      //   style={{ background: "black" }}
-    ></svg>
+    <div
+      ref={wrapperRef}
+      style={{ width: "100%", height: "500px", overflow: "hidden" }}
+    >
+      <svg
+        ref={svgRef}
+        viewBox={`0 0 ${wrapperRef.current?.clientWidth || 900} ${
+          wrapperRef.current?.clientHeight || 500
+        }`}
+        width="100%"
+        height="100%"
+        preserveAspectRatio="xMidYMid meet"
+        style={{ display: "block" }}
+      ></svg>
+    </div>
   );
 };
 

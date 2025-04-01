@@ -27,9 +27,8 @@ export const gridItems = [
   },
   {
     id: 3,
-    title: "Deep Learning and AI enthusiast",
-    description:
-      "I am passionate about AI and its potential to change the world",
+    title: "",
+    description: "",
     className:
       "lg:col-span-2 lg:row-span:1 md:col-span-3 md:row-span-1 lg:min-h-[50vh]",
     imgClassName: "",
@@ -39,33 +38,13 @@ export const gridItems = [
   },
   {
     id: 4,
-    title: "",
-    description: "",
+    title: "Deep Learning and AI enthusiast",
+    description:
+      "I am passionate about AI and its potential to change the world",
     className:
       "lg:col-span-3 lg:row-span:1 md:col-span-3 md:row-span-1 lg:min-h-[50vh]",
     imgClassName: "",
     titleClassName: "justify-start",
-    img: "",
-    spareImg: "",
-  },
-
-  {
-    id: 5,
-    title: "Currently building a JS Animation library",
-    description: "The Inside Scoop",
-    className: "md:col-span-3 md:row-span-2",
-    imgClassName: "absolute right-0 bottom-0 md:w-96 w-60",
-    titleClassName: "justify-center md:justify-start lg:justify-center",
-    img: "/b5.svg",
-    spareImg: "/grid.svg",
-  },
-  {
-    id: 6,
-    title: "Do you want to start a project together?",
-    description: "",
-    className: "lg:col-span-2 md:col-span-3 md:row-span-1",
-    imgClassName: "",
-    titleClassName: "justify-center md:max-w-full max-w-60 text-center",
     img: "",
     spareImg: "",
   },

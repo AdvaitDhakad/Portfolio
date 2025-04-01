@@ -100,8 +100,10 @@ export const BentoGridItem = ({
     (params: any) => {
       setEdges((eds) => addEdge(params, eds));
       if (edges.length === 0) {
-        setNodes([...initialNodes, successNode]);
-        setShowOverlay(true);
+        setNodes([successNode]);
+        setTimeout(() => {
+          setShowOverlay(true);
+        }, 2000);
       }
     },
     [edges]
@@ -123,35 +125,37 @@ export const BentoGridItem = ({
       {id === 1 ? (
         <div className="h-full relative">
           <div className="absolute top-4 left-0 w-full text-white text-center">
-            <h3 className="text-lg font-semibold">{title}</h3>
+            <h2 className="text-lg font-semibold">{title}</h2>
             <p className="text-sm text-gray-300">{description}</p>
           </div>
-          <div className="absolute inset-0 justify-center bg-black bg-opacity-10">
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={data}>
-                <XAxis dataKey="name" stroke="#ddd" />
-                <YAxis stroke="#ddd" />
-                <Tooltip
-                  contentStyle={{
-                    backgroundColor: "#222",
-                    borderColor: "#444",
-                  }}
-                />
-                <Line
-                  type="monotone"
-                  dataKey="value"
-                  stroke="#82ca9d"
-                  strokeWidth={3}
-                  dot={{ r: 6 }}
-                  activeDot={{ r: 10 }}
-                  animationDuration={2000}
-                />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
+          <ResponsiveContainer width="100%" height="100%">
+            <LineChart
+              data={data}
+              margin={{ top: 50, right: 50, left: 20, bottom: 15 }}
+            >
+              <XAxis dataKey="name" stroke="#ddd" tick={false} />
+              <YAxis stroke="#ddd" tick={false} />
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: "#222",
+                  borderColor: "#444",
+                }}
+              />
+              <Line
+                type="monotone"
+                dataKey="value"
+                stroke="#82ca9d"
+                strokeWidth={3}
+                dot={{ r: 6 }}
+                activeDot={{ r: 10 }}
+                animationDuration={3000}
+              />
+            </LineChart>
+          </ResponsiveContainer>
+          <div className="absolute inset-0 justify-center bg-black bg-opacity-10"></div>
         </div>
       ) : id === 2 ? (
-        <div className="h-full flex flex-col relative">
+        <div className="h-full min-h-96 flex flex-col relative">
           <div className="flex-grow h-[80%] border border-white/[0.1] rounded-lg overflow-hidden bg-white relative">
             <ReactFlow
               nodes={nodes}
@@ -181,27 +185,23 @@ export const BentoGridItem = ({
             )}
           </div>
           <div className="h-[20%] p-4 flex flex-col items-center justify-center">
-            <h3 className="text-lg font-semibold">{title}</h3>
+            <h2 className="text-lg font-semibold">{title}</h2>
             <p className="text-sm text-gray-300">{description}</p>
           </div>
         </div>
-      ) : id == 3 ? (
+      ) : id === 3 ? (
         <div className="p-4 flex flex-col items-center justify-center">
-          <h3 className="text-lg font-semibold">{title}</h3>
+          <h2 className="text-lg font-semibold">{title}</h2>
           <p className="text-sm text-gray-300">{description}</p>
-          <div className="bg-black bg-opacity-10">
+        </div>
+      ) : id == 4 ? (
+        <div className="p-4 flex flex-col items-center justify-center">
+          <h2 className="text-lg font-semibold">{title}</h2>
+          <p className="text-sm text-gray-300">{description}</p>
+          <div className="min-w-[900px]">
             <NeuralNetworkVisualization />
           </div>
         </div>
-      ) : id === 4 ? (
-        <div className="p-4 flex flex-col items-center justify-center">
-          <h3 className="text-lg font-semibold">{title}</h3>
-          <p className="text-sm text-gray-300">{description}</p>
-        </div>
-      ) : id === 5 ? (
-        <div className="h-full relative"></div>
-      ) : id === 6 ? (
-        <div className="h-full flex flex-col relative"></div>
       ) : null}
     </div>
   );

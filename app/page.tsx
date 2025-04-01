@@ -16,8 +16,10 @@ const Home = () => {
       <div className="w-full">
         <FloatingNav navItems={navItems} />
         <Hero />
-        <Grid />
-        <Clients />
+        <div className="sm:px-0 md:px-10 lg:px-0 xl:px-56 pt-20 sm:pt-16 md:pt-40 lg:pt-48 xl:pt-64 pb-0">
+          <Grid />
+        </div>
+        {/* <Clients /> */}
         <Approach />
 
         {/* <RecentProjects />
