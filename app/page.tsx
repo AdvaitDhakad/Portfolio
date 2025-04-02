@@ -19,12 +19,10 @@ const Home = () => {
         <div className="sm:px-0 md:px-10 lg:px-0 xl:px-56 pt-20 sm:pt-16 md:pt-40 lg:pt-48 xl:pt-64 pb-0">
           <Grid />
         </div>
-        {/* <Clients /> */}
         <Approach />
-
-        {/* <RecentProjects />
-        <Experience />
-        <Footer /> */}
+        <Clients />
+        <Footer />
+        <RecentProjects />
       </div>
     </main>
   );

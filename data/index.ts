@@ -1,7 +1,9 @@
+import { url } from "inspector";
+
 export const navItems = [
   { name: "Home", link: "/" },
   { name: "About", link: "#about" },
-  { name: "Projects", link: "#projects" },
+  { name: "Projects", link: "#skills" },
   { name: "Contact", link: "#contact" },
 ];
 
@@ -118,36 +120,120 @@ export const testimonials = [
   },
 ];
 
-export const companies = [
+export const skills = [
   {
     id: 1,
-    name: "cloudinary",
-    img: "/cloud.svg",
-    nameImg: "/cloudName.svg",
+    title: "React.js",
+    desc: "Strong understanding of React.js, hooks, context API, and state management.",
+    icon: "/tech_stack/react.svg",
   },
   {
     id: 2,
-    name: "appwrite",
-    img: "/app.svg",
-    nameImg: "/appName.svg",
+    title: "Next.js",
+    desc: "Experience with Next.js for SSR and SSG, improving performance and SEO.",
+    icon: "/tech_stack/nextjs.svg",
   },
   {
     id: 3,
-    name: "HOSTINGER",
-    img: "/host.svg",
-    nameImg: "/hostName.svg",
+    title: "Tailwind CSS",
+    desc: "Use Tailwind CSS for rapid, responsive, and modern UI development.",
+    icon: "/tech_stack/tail.svg",
   },
   {
     id: 4,
-    name: "stream",
-    img: "/s.svg",
-    nameImg: "/streamName.svg",
+    title: "TypeScript",
+    desc: "Leverage TypeScript for type safety and better developer experience.",
+    icon: "/tech_stack/ts.svg",
   },
   {
     id: 5,
-    name: "docker.",
-    img: "/dock.svg",
-    nameImg: "/dockerName.svg",
+    title: "Python",
+    desc: "Strong foundation in Python for backend, data analysis, and ML.",
+    icon: "/tech_stack/python.svg",
+  },
+  {
+    id: 6,
+    title: "Node.js",
+    desc: "Experience with Node.js for scalable server-side apps and APIs.",
+    icon: "/tech_stack/nodejs.svg",
+  },
+  {
+    id: 7,
+    title: "CSS",
+    desc: "Strong understanding of CSS for styling and layout of web pages.",
+    icon: "/tech_stack/css.svg",
+  },
+  {
+    id: 8,
+    title: "JavaScript",
+    desc: "Strong understanding of JavaScript for interactive web applications.",
+    icon: "/tech_stack/javascript.svg",
+  },
+  {
+    id: 9,
+    title: "JAVA",
+    desc: "Strong understanding of Java for building robust and scalable applications.",
+    icon: "/tech_stack/java.svg",
+  },
+  {
+    id: 10,
+    title: "Dataabase",
+    desc: "Experience with MongoDB and MySQL for data storage and management.",
+    icon: "/tech_stack/database.svg",
+  },
+  {
+    id: 11,
+    title: "Git",
+    desc: "Use Git for version control and collaboration on software projects.",
+    icon: "/tech_stack/git.svg",
+  },
+  {
+    id: 12,
+    title: "Django",
+    desc: "Experience with Django for web applications and RESTful API development.",
+    icon: "/tech_stack/django.svg",
+  },
+  {
+    id: 13,
+    title: "Flask",
+    desc: "Experience with Flask for lightweight web applications and APIs.",
+    icon: "/tech_stack/flask.svg",
+  },
+  {
+    id: 14,
+    title: "Docker",
+    desc: "Experience with Docker for containerization and deployment of applications.",
+    icon: "/tech_stack/docker.svg",
+  },
+  {
+    id: 15,
+    title: "HTML",
+    desc: "Strong understanding of HTML for structuring web content effectively.",
+    icon: "/tech_stack/html.svg",
+  },
+  {
+    id: 16,
+    title: "Linux",
+    desc: "Experience with Linux as a daily driver and important command-line tools.",
+    icon: "/tech_stack/linux.svg",
+  },
+  {
+    id: 17,
+    title: "SQL",
+    desc: "Experience with SQL for querying and managing relational databases.",
+    icon: "/tech_stack/mysql.svg",
+  },
+  {
+    id: 18,
+    title: "REST APIs",
+    desc: "Experience with REST APIs for building and consuming web services.",
+    icon: "/tech_stack/rest.svg",
+  },
+  {
+    id: 19,
+    title: "Selenium",
+    desc: "Experience with Selenium for automating web applications for data extraction.",
+    icon: "/tech_stack/selenium.svg",
   },
 ];
 

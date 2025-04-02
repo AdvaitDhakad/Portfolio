@@ -83,3 +83,12 @@
     @apply font-bold text-4xl md:text-5xl text-center;
   }
 }
+@keyframes infinite-scroll {
+  to {
+    transform: translateX(calc(-50% - 0.5rem));
+  }
+}
+
+.animate-infinite-scroll {
+  animation: infinite-scroll var(--animation-duration) var(--animation-direction) linear infinite;
+}
