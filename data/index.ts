@@ -28,9 +28,6 @@ export const gridItems = [
     description:
       "Combining curosity and smart work to achive success and create a better world.",
     className: "lg:col-span-2 md:col-span-3 md:row-span-1 lg:min-h-[60vh]",
-    imgClassName: "",
-    img: "",
-    spareImg: "",
   },
   {
     id: 3,
@@ -39,9 +36,6 @@ export const gridItems = [
       "I am passionate about AI and its potential to change the world",
     className:
       "lg:col-span-3 lg:row-span:1 md:col-span-3 md:row-span-1 lg:min-h-[50vh]",
-    imgClassName: "",
-    img: "",
-    spareImg: "",
   },
 ];
 
