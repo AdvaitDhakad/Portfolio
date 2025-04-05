@@ -2,7 +2,7 @@
 import React from "react";
 import { FloatingNav } from "@/components/ui/FloatingNavbar";
 import { navItemsAboutPage } from "@/data";
-import Footer from "@/components/Footer";
+// import Footer from "@/components/Footer";
 import AboutMePage from "@/components/aboutme";
 
 const Profile = () => {

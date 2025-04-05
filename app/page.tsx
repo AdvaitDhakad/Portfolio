@@ -3,7 +3,7 @@
 import { navItems } from "@/data";
 import Hero from "@/components/Hero";
 import Grid from "@/components/Grid";
-import Footer from "@/components/Footer";
+// import Footer from "@/components/Footer";
 import SkillsandProject from "@/components/SkillsandProject";
 import Certificates from "@/components/Certificates";
 import { FloatingNav } from "@/components/ui/FloatingNavbar";
