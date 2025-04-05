@@ -205,7 +205,7 @@ const ExperienceCarousel = () => {
   };
 
   // Calculate adjacent indices for infinite loop
-  const getAdjacentIndex = (offset) => {
+  const getAdjacentIndex = (offset: number) => {
     return (
       (activeIndex + offset + workExperience.length) % workExperience.length
     );

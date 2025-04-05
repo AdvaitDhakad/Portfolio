@@ -79,13 +79,14 @@ const ExperienceCarousel = () => {
   };
 
   // Calculate adjacent indices for infinite loop
-  const getAdjacentIndex = (offset) => {
+  const getAdjacentIndex = (offset: number) => {
     return (activeIndex + offset + Projects.length) % Projects.length;
   };
 
   // Glow animation variant for active image
   const glowVariant = {
-    animate: {
+    glowing: {
+      // Changed from "animate" to "glowing"
       boxShadow: [
         "0 0 10px 2px rgba(235, 87, 87, 0.5)",
         "0 0 20px 5px rgba(235, 87, 87, 0.7)",
@@ -269,8 +270,24 @@ const ExperienceCarousel = () => {
               onClick={openModal}
             >
               <motion.div
-                variants={glowVariant}
-                animate="animate"
+                initial="initial"
+                animate="glowing"
+                variants={{
+                  initial: { boxShadow: "0 0 10px 2px rgba(235, 87, 87, 0.5)" },
+                  glowing: {
+                    boxShadow: [
+                      "0 0 10px 2px rgba(235, 87, 87, 0.5)",
+                      "0 0 20px 5px rgba(235, 87, 87, 0.7)",
+                      "0 0 15px 3px rgba(235, 87, 87, 0.6)",
+                      "0 0 10px 2px rgba(235, 87, 87, 0.5)",
+                    ],
+                    transition: {
+                      duration: 2,
+                      repeat: Infinity,
+                      repeatType: "reverse",
+                    },
+                  },
+                }}
                 className="w-full h-full"
               >
                 <Image
