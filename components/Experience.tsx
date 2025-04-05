@@ -1,12 +1,14 @@
 "use client";
 import React, { useState } from "react";
 import { Projects } from "@/data";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
 const ExperienceCarousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [transitionDirection, setTransitionDirection] = useState("next");
+  const [isHovered, setIsHovered] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const handleNext = () => {
     setTransitionDirection("next");
@@ -18,6 +20,14 @@ const ExperienceCarousel = () => {
     setActiveIndex(
       (prevIndex) => (prevIndex - 1 + Projects.length) % Projects.length
     );
+  };
+
+  const openModal = () => {
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
   };
 
   // Generate random animation parameters for text elements
@@ -90,6 +100,58 @@ const ExperienceCarousel = () => {
     },
   };
 
+  // Hover variant for active image
+  const hoverVariant = {
+    hover: {
+      scale: 1.1,
+      filter: "brightness(1.3)",
+      transition: { duration: 0.3, ease: "easeOut" },
+    },
+  };
+
+  // Modal animation variants
+  const modalVariants = {
+    hidden: {
+      opacity: 0,
+      scale: 0.8,
+    },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.3,
+        ease: "easeOut",
+      },
+    },
+    exit: {
+      opacity: 0,
+      scale: 0.8,
+      transition: {
+        duration: 0.3,
+        ease: "easeIn",
+      },
+    },
+  };
+
+  // Backdrop animation variants
+  const backdropVariants = {
+    hidden: {
+      opacity: 0,
+    },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.3,
+      },
+    },
+    exit: {
+      opacity: 0,
+      transition: {
+        duration: 0.3,
+      },
+    },
+  };
+
   return (
     <div className="flex w-full flex-col items-center justify-center pt-20">
       <div className="relative w-5/6 grid grid-cols-1 items-center justify-between bg-gradient-to-r from-[#04071d] to-[#0c0e23] p-4 px-32 text-white md:grid-cols-2 md:grid-rows-1 md:gap-0 md:px-10 lg:px-16">
@@ -140,6 +202,23 @@ const ExperienceCarousel = () => {
               >
                 {Projects[activeIndex].desc}
               </motion.p>
+              {/* GitHub Logo with clickable link */}
+              <div className="relative inline-block mt-4 group">
+                <a
+                  href={Projects[activeIndex].gitlink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Visit ${Projects[activeIndex].title} Github`}
+                >
+                  <Image
+                    src="/socials/github-logo-svgrepo-com.svg"
+                    alt="GitHub"
+                    width={40}
+                    height={40}
+                    className="w-14 h-14 filter invert opacity-80 hover:opacity-100 transition-all duration-300 hover:scale-110"
+                  />
+                </a>
+              </div>
             </div>
           </motion.div>
         </div>
@@ -172,17 +251,22 @@ const ExperienceCarousel = () => {
 
             {/* Current Item */}
             <motion.div
-              className="absolute z-10 h-auto w-[22rem] min-w-[22rem] max-w-[28rem] md:w-[26vw] overflow-hidden rounded-[2rem]"
+              className="absolute z-10 h-auto w-[22rem] min-w-[22rem] max-w-[28rem] md:w-[26vw] overflow-hidden rounded-[2rem] cursor-pointer"
               animate={{
                 opacity: 1,
                 x: "0",
                 scale: 1.25,
                 filter: "brightness(1.2)",
               }}
+              whileHover="hover"
+              variants={hoverVariant}
               transition={{
                 duration: 0.5,
                 ease: "easeInOut",
               }}
+              onHoverStart={() => setIsHovered(true)}
+              onHoverEnd={() => setIsHovered(false)}
+              onClick={openModal}
             >
               <motion.div
                 variants={glowVariant}
@@ -190,7 +274,7 @@ const ExperienceCarousel = () => {
                 className="w-full h-full"
               >
                 <Image
-                  className="h-auto w-full rounded-[2rem] object-cover shadow-lg"
+                  className="h-auto w-full rounded-[2rem] object-cover shadow-lg transition-all duration-300"
                   alt={Projects[activeIndex].title}
                   src={Projects[activeIndex].thumbnail}
                   width={600}
@@ -246,6 +330,74 @@ const ExperienceCarousel = () => {
           </button>
         </div>
       </div>
+
+      {/* Modal with backdrop */}
+      <AnimatePresence>
+        {showModal && (
+          <>
+            {/* Backdrop with blur */}
+            <motion.div
+              className="fixed inset-0 bg-black/60 backdrop-blur-md z-50 flex items-center justify-center"
+              variants={backdropVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              onClick={closeModal}
+            >
+              {/* Modal Container */}
+              <motion.div
+                className="relative max-w-4xl w-11/12 mx-auto"
+                variants={modalVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Close Button */}
+                <button
+                  className="absolute -top-12 right-0 z-10 p-2 rounded-full bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 transition-all duration-300"
+                  onClick={closeModal}
+                >
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M18 6L6 18M6 6L18 18"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </button>
+
+                {/* Image Container */}
+                <div className="rounded-2xl overflow-hidden shadow-2xl">
+                  <Image
+                    className="w-full h-auto object-cover"
+                    src={Projects[activeIndex].thumbnail}
+                    alt={Projects[activeIndex].title}
+                    width={1200}
+                    height={800}
+                    priority
+                  />
+                </div>
+
+                {/* Project Title */}
+                <div className="mt-4 text-center">
+                  <h2 className="text-2xl font-bold text-white">
+                    {Projects[activeIndex].title}
+                  </h2>
+                </div>
+              </motion.div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

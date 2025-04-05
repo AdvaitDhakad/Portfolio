@@ -14,24 +14,25 @@ const AboutMePage: React.FC = () => {
   // Sample timeline data - replace with your own journey
   const timelineItems: TimelineItem[] = [
     {
-      period: "2010 - 2014",
-      title: "High School",
-      institution: "Lincoln High School",
-      description: "Graduated with honors in Science and Mathematics.",
+      period: "2007-2021",
+      title: "School",
+      institution: "The Shishukunj International School, Indore, India",
+      description:
+        "Graduated with 98.3% in Commerece and Information Practices.",
     },
     {
-      period: "2014 - 2018",
-      title: "Bachelor of Science",
-      institution: "University of Technology",
+      period: "2021 - 2024",
+      title: "Bachelor of Computer Application",
+      institution:
+        "University of Petroleum and Energy Studies(UPES), Dehradun, India",
       description:
-        "Majored in Computer Science with focus on software development.",
+        "Graduated with 8.4 CGPA in Computer Application with specialization in Artificial Intelligence and Machine Learning.",
     },
     {
-      period: "2019 - 2021",
-      title: "Master of Science",
-      institution: "Tech Institute",
-      description:
-        "Specialized in Artificial Intelligence and Machine Learning.",
+      period: "2024 - 2026",
+      title: "Master of Computer Application",
+      institution: "MET Institute of Computer Science, Mumbai, India",
+      description: "Pursuing Master's in Computer Application.",
     },
   ];
 
@@ -73,7 +74,7 @@ const AboutMePage: React.FC = () => {
                 {/* Photo container */}
                 <div className="absolute inset-3 rounded-full overflow-hidden shadow-2xl">
                   <Image
-                    src="/profile.svg"
+                    src="/AdvaitDhakad.png"
                     alt="Profile Photo"
                     layout="fill"
                     objectFit="cover"
@@ -100,7 +101,7 @@ const AboutMePage: React.FC = () => {
 
               {/* Job title */}
               <p className="text-2xl text-indigo-300 mt-4 font-light">
-                Senior Software Engineer
+                To Be Written
               </p>
 
               {/* Animated social icons */}
@@ -138,17 +139,19 @@ const AboutMePage: React.FC = () => {
               </h3>
               <div className="space-y-6">
                 <p className="text-xl lg:text-2xl leading-relaxed text-slate-200 backdrop-blur-sm bg-white/5 p-8 rounded-lg hover:bg-white/10 transition-all duration-300 border-l-4 border-indigo-500 shadow-xl">
-                  I'm a passionate software engineer with expertise in building
-                  modern web applications. With over 5 years of experience in
-                  full-stack development, I love creating elegant solutions to
-                  complex problems.
+                  Hey, there I am Advait Dhakad an aspiring data scientist and a
+                  passionate intrest in finance and frontend development. I am a
+                  self-motivated individual with a strong desire to learn and
+                  grow in the field of technology. I have a keen interest in
+                  data science, machine learning, and artificial intelligence. I
+                  am always eager to explore new technologies and apply them to
+                  real-world problems.
                 </p>
 
                 <p className="text-xl lg:text-2xl leading-relaxed text-slate-300 backdrop-blur-sm bg-white/5 p-8 rounded-lg hover:bg-white/10 transition-all duration-300 border-l-4 border-purple-500 shadow-xl">
-                  My journey in technology has been driven by curiosity and a
-                  desire to build products that positively impact people's
-                  lives. I specialize in React, Next.js, and modern frontend
-                  architectures.
+                  My journey started back in school in technology has been
+                  driven by curiosity and a desire to build products that
+                  positively ignites curosity in me.
                 </p>
 
                 <p className="text-xl lg:text-2xl leading-relaxed text-slate-200 backdrop-blur-sm bg-white/5 p-8 rounded-lg hover:bg-white/10 transition-all duration-300 border-l-4 border-pink-500 shadow-xl">
