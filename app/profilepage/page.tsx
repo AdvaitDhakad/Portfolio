@@ -11,7 +11,7 @@ const Profile = () => {
       <div className="w-full">
         <FloatingNav navItems={navItemsAboutPage} />
         <AboutMePage />
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </main>
   );
