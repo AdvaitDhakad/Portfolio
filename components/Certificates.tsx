@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { CanvasRevealEffect } from "./ui/CanvasRevealEffect";
 
-const Approach = () => {
+const Certificates = () => {
   return (
     <section className="w-full py-20">
       <h1 className="heading">
@@ -13,9 +13,9 @@ const Approach = () => {
       <div className="my-20 flex flex-col lg:flex-row items-center justify-center w-full gap-4">
         <Card
           title="Google Data Analytics Specialization"
-          icon={<AceternityIcon order="Certificate 1" />}
+          icon={<AceternityIcon order="Specializations" />}
           des="Professional certificate covering data cleaning, analysis, visualization, and tools like R programming, Tableau, and SQL."
-          certificateUrl="/GoogleData.pdf" // Update path to your PDF
+          certificateUrl="/certificates/GoogleData.pdf" // Update path to your PDF
         >
           <CanvasRevealEffect
             animationSpeed={5.1}
@@ -24,9 +24,9 @@ const Approach = () => {
         </Card>
         <Card
           title="IBM Data Science Professional Specialization"
-          icon={<AceternityIcon order="Certificate 2" />}
+          icon={<AceternityIcon order="Specializations" />}
           des="Comprehensive program covering data science, machine learning, and AI using Python, SQL, and data visualization tools."
-          certificateUrl="/IBM_DataScience.pdf" // Update path to your PDF
+          certificateUrl="/certificates/IBM_DataScience.pdf" // Update path to your PDF
         >
           <CanvasRevealEffect
             animationSpeed={3}
@@ -39,9 +39,22 @@ const Approach = () => {
           />
         </Card>
         <Card
-          title="React Specialization"
-          icon={<AceternityIcon order="Certificate 3" />}
-          des="Advanced React concepts including hooks, context API, performance optimization, and testing."
+          title="NSE Certification Financial Planning, Banking & Investment"
+          icon={<AceternityIcon order="Certificates" />}
+          des="This is the NSE Certification in Financial Planning, Banking & Investment. It covers the basics of financial planning, banking, and investment strategies."
+          certificateUrl="/certificates/NSECertificatesMerged.pdf"
+        >
+          <CanvasRevealEffect
+            animationSpeed={3}
+            containerClassName="bg-sky-600 rounded-3xl overflow-hidden"
+            colors={[[125, 211, 252]]}
+          />
+        </Card>
+        <Card
+          title="Research Paper"
+          icon={<AceternityIcon order="Researches" />}
+          des="Published a Research Paper on a Web Interface that uses React.js and Flask to make Machine Learning Models Accessible to Non-Programmers."
+          certificateUrl="/certificates/ResearchPaper.pdf"
         >
           <CanvasRevealEffect
             animationSpeed={3}
@@ -54,7 +67,7 @@ const Approach = () => {
   );
 };
 
-export default Approach;
+export default Certificates;
 
 const Card = ({
   title,

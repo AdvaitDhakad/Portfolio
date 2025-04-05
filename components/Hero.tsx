@@ -6,7 +6,14 @@ import { TextGenerateEffect } from "./ui/TextGenerateEffect";
 
 const Hero = () => {
   return (
-    <div className="pb-20 pt-36">
+    <div className="pb-96 pt-56">
+      <div className="w-full absolute left-0 -bottom-72 z-0 min-h-[100vh]">
+        <img
+          src="/footer-grid.svg"
+          alt="grid"
+          className="w-full h-full opacity-50 "
+        />
+      </div>
       <div>
         <Spotlight
           className="-top-40 -left-10 md:-left-32 md:-top-20 h-screen"
@@ -42,7 +49,7 @@ const Hero = () => {
             Hi! I&apos;m Advait, an aspiring Data Scientist based in Mumbai.
           </p>
 
-          <a href="#about">
+          <a href="#beliefs">
             <MagicButton
               title="Show my work"
               icon={<FaLocationArrow />}

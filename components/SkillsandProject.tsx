@@ -1,11 +1,11 @@
 "use client";
 
 import React from "react";
-import Experience from "./Experience";
-import { testimonials, skills } from "@/data";
+import { skills } from "@/data";
 import { InfiniteSkillsScroller } from "./ui/InfiniteScroll";
+import ExperienceCarousel from "./Experience";
 
-const Clients = () => {
+const SkillsandProject = () => {
   return (
     <section id="skills" className="pt-20">
       <h1 className="heading tracking-wide">
@@ -23,18 +23,10 @@ const Clients = () => {
             pauseOnHover={true}
           />
         </div>
-        {/* <div className="h-[15vh] rounded-md flex-col flex  items-center justify-center ">
-          <InfiniteSkillsScroller
-            items={skills}
-            direction="left"
-            speed="normal"
-            pauseOnHover={true}
-          />
-        </div> */}
       </div>
-      <Experience />
+      <ExperienceCarousel />
     </section>
   );
 };
 
-export default Clients;
+export default SkillsandProject;
