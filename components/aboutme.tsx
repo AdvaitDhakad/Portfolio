@@ -32,7 +32,7 @@ const AboutMePage: React.FC = () => {
       period: "2024 - 2026",
       title: "Master of Computer Application",
       institution: "MET Institute of Computer Science, Mumbai, India",
-      description: "Pursuing Master's in Computer Application.",
+      description: "Pursuing Masters in Computer Application.",
     },
   ];
 
@@ -155,9 +155,10 @@ const AboutMePage: React.FC = () => {
                 </p>
 
                 <p className="text-xl lg:text-2xl leading-relaxed text-slate-200 backdrop-blur-sm bg-white/5 p-8 rounded-lg hover:bg-white/10 transition-all duration-300 border-l-4 border-pink-500 shadow-xl">
-                  When I'm not coding, you'll find me hiking, reading sci-fi
-                  novels, or experimenting with new recipes. I'm always looking
-                  for opportunities to learn and grow as a developer.
+                  When I&apos;m not coding, you&apos;ll find me hiking, reading
+                  sci-fi novels, or experimenting with new recipes. I&apos;m
+                  always looking for opportunities to learn and grow as a
+                  developer.
                 </p>
               </div>
             </div>
@@ -215,10 +216,10 @@ const AboutMePage: React.FC = () => {
           {/* Contact section
           <div className="mt-24 text-center">
             <h3 className="text-3xl lg:text-4xl font-semibold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-300 to-indigo-300">
-              Let's Connect
+              Let&apos;s Connect
             </h3>
             <p className="text-xl mb-8 text-slate-300 max-w-3xl mx-auto">
-              I'm always open to discussing new projects, creative ideas or
+              I&apos;m always open to discussing new projects, creative ideas or
               opportunities to be part of your vision.
             </p>
             <button className="px-8 py-4 text-xl bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full hover:from-purple-500 hover:to-indigo-500 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/30">
