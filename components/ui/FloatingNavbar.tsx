@@ -8,6 +8,7 @@ import {
 } from "framer-motion";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { usePathname, useRouter } from "next/navigation";
 
 export const FloatingNav = ({
   navItems,
@@ -21,15 +22,19 @@ export const FloatingNav = ({
   className?: string;
 }) => {
   const { scrollYProgress } = useScroll();
-
   // set true for the initial state so that nav bar is visible in the hero section
   const [visible, setVisible] = useState(true);
+  const pathname = usePathname();
+  const router = useRouter();
+  const [isNavigating, setIsNavigating] = useState(false);
+  const [navigateTo, setNavigateTo] = useState("");
+
+  const isProfilePage = pathname === "/profilepage";
 
   useMotionValueEvent(scrollYProgress, "change", (current) => {
     // Check if current is not undefined and is a number
     if (typeof current === "number") {
       let direction = current! - scrollYProgress.getPrevious()!;
-
       if (scrollYProgress.get() < 0.05) {
         // also set true for the initial state
         setVisible(true);
@@ -43,54 +48,151 @@ export const FloatingNav = ({
     }
   });
 
+  // Handle navigation with animation
+  const handleNavigation = (path: string) => {
+    setIsNavigating(true);
+    setNavigateTo(path);
+
+    // Wait for animation to complete before navigating
+    setTimeout(() => {
+      router.push(path);
+      setIsNavigating(false);
+    }, 300);
+  };
+
   return (
-    <AnimatePresence mode="wait">
-      <motion.div
-        initial={{
-          opacity: 1,
-          y: -100,
-        }}
-        animate={{
-          y: visible ? 0 : -100,
-          opacity: visible ? 1 : 0,
-        }}
-        transition={{
-          duration: 0.2,
-        }}
-        className={cn(
-          // change rounded-full to rounded-lg
-          // remove dark:border-white/[0.2] dark:bg-black bg-white border-transparent
-          // change  pr-2 pl-8 py-2 to px-10 py-5
-          "flex max-w-fit md:min-w-fit lg:min-w-fit fixed z-[5000] top-10 inset-x-0 mx-auto px-10 py-5 rounded-lg border border-black/.1 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] items-justify space-x-4",
-          className
-        )}
-        style={{
-          backdropFilter: "blur(16px) saturate(180%)",
-          backgroundColor: "rgba(17, 25, 40, 0.75)",
-          borderRadius: "12px",
-          border: "1px solid rgba(255, 255, 255, 0.125)",
-        }}
-      >
-        {navItems.map((navItem: any, idx: number) => (
-          <Link
-            key={`link=${idx}`}
-            href={navItem.link}
-            className={cn(
-              "relative dark:text-neutral-50 items-center  flex space-x-1 text-neutral-600 dark:hover:text-neutral-300 hover:text-neutral-500"
-            )}
+    <>
+      {/* Page transition overlay */}
+      <AnimatePresence>
+        {isNavigating && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 bg-black/70 z-[9999]"
           >
-            <span className="block sm:hidden">{navItem.icon}</span>
-            {/* add !cursor-pointer */}
-            {/* remove hidden sm:block for the mobile responsive */}
-            <span className=" text-sm !cursor-pointer">{navItem.name}</span>
-          </Link>
-        ))}
-        {/* remove this login btn */}
-        {/* <button className="border text-sm font-medium relative border-neutral-200 dark:border-white/[0.2] text-black dark:text-white px-4 py-2 rounded-full">
-          <span>Login</span>
-          <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-blue-500 to-transparent  h-px" />
-        </button> */}
-      </motion.div>
-    </AnimatePresence>
+            <motion.div
+              className="absolute inset-0 flex items-center justify-center text-white text-xl font-medium"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 1.1, opacity: 0 }}
+            >
+              {navigateTo === "/profilepage"
+                ? "Going to Profile..."
+                : "Going to Home..."}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Only render the navbar if NOT on profile page */}
+      {!isProfilePage && (
+        <AnimatePresence mode="wait">
+          <motion.div
+            initial={{
+              opacity: 1,
+              y: -100,
+            }}
+            animate={{
+              y: visible ? 0 : -100,
+              opacity: visible ? 1 : 0,
+            }}
+            transition={{
+              duration: 0.2,
+            }}
+            className={cn(
+              "flex max-w-fit md:min-w-fit lg:min-w-fit fixed z-[5000] top-10 inset-x-0 mx-auto px-10 py-5 rounded-lg border border-black/.1 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] items-justify space-x-4",
+              className
+            )}
+            style={{
+              backdropFilter: "blur(16px) saturate(180%)",
+              backgroundColor: "rgba(17, 25, 40, 0.75)",
+              borderRadius: "12px",
+              border: "1px solid rgba(255, 255, 255, 0.125)",
+            }}
+          >
+            {navItems.map((navItem: any, idx: number) => (
+              <div
+                key={`link=${idx}`}
+                onClick={() => handleNavigation(navItem.link)}
+                className={cn(
+                  "relative dark:text-neutral-50 items-center flex space-x-1 text-neutral-600 dark:hover:text-neutral-300 hover:text-neutral-500 cursor-pointer"
+                )}
+              >
+                <span className="block sm:hidden">{navItem.icon}</span>
+                <span className="text-sm !cursor-pointer">{navItem.name}</span>
+              </div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
+      )}
+
+      {/* Profile/Home Icon - Positioned on the right side */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          initial={{
+            opacity: 1,
+            y: -100,
+          }}
+          animate={{
+            y: visible ? 0 : -100,
+            opacity: visible ? 1 : 0,
+          }}
+          transition={{
+            duration: 0.2,
+          }}
+          className="fixed z-[5000] top-10 right-10"
+        >
+          <motion.div
+            className="p-3 rounded-full cursor-pointer flex items-center justify-center"
+            style={{
+              backdropFilter: "blur(16px) saturate(180%)",
+              backgroundColor: "rgba(17, 25, 40, 0.75)",
+              border: "1px solid rgba(255, 255, 255, 0.125)",
+            }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() =>
+              handleNavigation(isProfilePage ? "/" : "/profilepage")
+            }
+          >
+            {isProfilePage ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="text-white"
+              >
+                <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="text-white"
+              >
+                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            )}
+          </motion.div>
+        </motion.div>
+      </AnimatePresence>
+    </>
   );
 };

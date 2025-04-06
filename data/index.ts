@@ -5,12 +5,6 @@ export const navItems = [
   { name: "Home", link: "/" },
   { name: "Beliefs", link: "#beliefs" },
   { name: "Projects", link: "#skills" },
-  { name: "Profile", link: "/profilepage" },
-];
-
-export const navItemsAboutPage = [
-  { name: "Home", link: "/" },
-  { name: "Contact", link: "#contact" },
 ];
 
 export const gridItems = [
