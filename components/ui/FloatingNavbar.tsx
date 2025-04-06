@@ -1,12 +1,11 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   motion,
   AnimatePresence,
   useScroll,
   useMotionValueEvent,
 } from "framer-motion";
-import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { usePathname, useRouter } from "next/navigation";
 
@@ -22,16 +21,26 @@ export const FloatingNav = ({
   className?: string;
 }) => {
   const { scrollYProgress } = useScroll();
-  // set true for the initial state so that nav bar is visible in the hero section
+  // Set initial state for visibility
   const [visible, setVisible] = useState(true);
   const pathname = usePathname();
   const router = useRouter();
   const [isNavigating, setIsNavigating] = useState(false);
   const [navigateTo, setNavigateTo] = useState("");
+  // Add a hydration state to prevent SSR issues
+  const [isMounted, setIsMounted] = useState(false);
 
   const isProfilePage = pathname === "/profilepage";
 
+  // Handle client-side hydration
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  // Only run motion value event on client side
   useMotionValueEvent(scrollYProgress, "change", (current) => {
+    if (!isMounted) return;
+
     // Check if current is not undefined and is a number
     if (typeof current === "number") {
       let direction = current! - scrollYProgress.getPrevious()!;
@@ -59,6 +68,11 @@ export const FloatingNav = ({
       setIsNavigating(false);
     }, 300);
   };
+
+  // Don't render anything during SSR
+  if (!isMounted) {
+    return null;
+  }
 
   return (
     <>
