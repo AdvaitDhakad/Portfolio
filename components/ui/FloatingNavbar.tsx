@@ -21,13 +21,11 @@ export const FloatingNav = ({
   className?: string;
 }) => {
   const { scrollYProgress } = useScroll();
-  // Set initial state for visibility
   const [visible, setVisible] = useState(true);
   const pathname = usePathname();
   const router = useRouter();
   const [isNavigating, setIsNavigating] = useState(false);
   const [navigateTo, setNavigateTo] = useState("");
-  // Add a hydration state to prevent SSR issues
   const [isMounted, setIsMounted] = useState(false);
 
   const isProfilePage = pathname === "/profilepage";
@@ -37,32 +35,44 @@ export const FloatingNav = ({
     setIsMounted(true);
   }, []);
 
-  // Only run motion value event on client side
-  useMotionValueEvent(scrollYProgress, "change", (current) => {
+  // Use useEffect for scroll events instead of useMotionValueEvent
+  useEffect(() => {
     if (!isMounted) return;
 
-    // Check if current is not undefined and is a number
-    if (typeof current === "number") {
-      let direction = current! - scrollYProgress.getPrevious()!;
-      if (scrollYProgress.get() < 0.05) {
-        // also set true for the initial state
+    const handleScroll = () => {
+      const currentScroll = window.scrollY;
+      const scrollDirection =
+        currentScroll > (window as any).lastScroll ? 1 : -1;
+
+      if (currentScroll < 50) {
+        setVisible(true);
+      } else if (scrollDirection < 0) {
         setVisible(true);
       } else {
-        if (direction < 0) {
-          setVisible(true);
-        } else {
-          setVisible(false);
-        }
+        setVisible(false);
       }
-    }
-  });
 
-  // Handle navigation with animation
+      (window as any).lastScroll = currentScroll;
+    };
+
+    // Set initial lastScroll value
+    (window as any).lastScroll = 0;
+
+    // Add event listener
+    window.addEventListener("scroll", handleScroll);
+
+    // Clean up
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isMounted]);
+
+  // Handle navigation with consistent Next.js approach
   const handleNavigation = (path: string) => {
+    if (!isMounted) return;
+
     setIsNavigating(true);
     setNavigateTo(path);
 
-    // Wait for animation to complete before navigating
+    // Use setTimeout to allow animation to play
     setTimeout(() => {
       router.push(path);
       setIsNavigating(false);
