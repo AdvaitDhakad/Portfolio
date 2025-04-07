@@ -1,13 +1,14 @@
 import React, { useEffect, useRef } from "react";
 import * as d3 from "d3";
+import { motion } from "framer-motion";
 
 interface NeuralNetworkVisualizationProps {
-  isHovered: boolean;
+  isAnimating: boolean;
 }
 
-const NeuralNetworkVisualization = ({
-  isHovered,
-}: NeuralNetworkVisualizationProps) => {
+const NeuralNetworkVisualization: React.FC<NeuralNetworkVisualizationProps> = ({
+  isAnimating,
+}) => {
   const svgRef = useRef<SVGSVGElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -151,21 +152,30 @@ const NeuralNetworkVisualization = ({
   }, []);
 
   return (
-    <div
-      ref={wrapperRef}
-      style={{ width: "100%", height: "500px", overflow: "hidden" }}
+    <motion.div
+      className="w-full h-full min-h-[400px] bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-xl"
+      animate={{
+        scale: isAnimating ? 1.02 : 1,
+        filter: isAnimating ? "brightness(1.1)" : "brightness(1)",
+      }}
+      transition={{ duration: 0.3 }}
     >
-      <svg
-        ref={svgRef}
-        viewBox={`0 0 ${wrapperRef.current?.clientWidth || 900} ${
-          wrapperRef.current?.clientHeight || 500
-        }`}
-        width="100%"
-        height="100%"
-        preserveAspectRatio="xMidYMid meet"
-        style={{ display: "block" }}
-      ></svg>
-    </div>
+      <div
+        ref={wrapperRef}
+        style={{ width: "100%", height: "500px", overflow: "hidden" }}
+      >
+        <svg
+          ref={svgRef}
+          viewBox={`0 0 ${wrapperRef.current?.clientWidth || 900} ${
+            wrapperRef.current?.clientHeight || 500
+          }`}
+          width="100%"
+          height="100%"
+          preserveAspectRatio="xMidYMid meet"
+          style={{ display: "block" }}
+        ></svg>
+      </div>
+    </motion.div>
   );
 };
 
