@@ -154,13 +154,13 @@ const ExperienceCarousel = () => {
   };
 
   return (
-    <div className="flex w-full flex-col items-center justify-center pt-20">
+    <div className="flex w-full flex-col items-center justify-center pt-5">
       <div className="relative w-5/6 grid grid-cols-1 items-center justify-between bg-gradient-to-r from-[#04071d] to-[#0c0e23] p-4 px-32 text-white md:grid-cols-2 md:grid-rows-1 md:gap-0 md:px-10 lg:px-16">
         {/* Left column with text */}
         <div className="relative flex items-center justify-center">
           {/* Previous Button - Left side of text column */}
           <button
-            className="absolute left-0 z-30 flex h-16 w-16 items-center justify-center rounded-full border-2 border-transparent transition-all duration-300 ease-in-out hover:scale-105 hover:border-[#eb5757] -translate-x-20"
+            className="absolute left-0 z-30 flex h-16 w-16 items-center justify-center transition-all duration-300 ease-in-out hover:scale-105 -translate-x-20"
             onClick={handlePrevious}
           >
             <svg
@@ -325,7 +325,7 @@ const ExperienceCarousel = () => {
 
           {/* Next Button - Right side of image column */}
           <button
-            className="absolute right-0 z-30 flex h-16 w-16 items-center justify-center rounded-full border-2 border-transparent transition-all duration-300 ease-in-out hover:scale-105 hover:border-[#eb5757] translate-x-20"
+            className="absolute right-0 z-30 flex h-16 w-16 items-center justify-center transition-all duration-300 ease-in-out hover:scale-105 translate-x-20"
             onClick={handleNext}
           >
             <svg
@@ -354,7 +354,7 @@ const ExperienceCarousel = () => {
           <>
             {/* Backdrop with blur */}
             <motion.div
-              className="fixed inset-0 bg-black/60 backdrop-blur-md z-50 flex items-center justify-center"
+              className="fixed inset-0 bg-black/60 backdrop-blur-md z-50 flex items-center justify-center overflow-y-auto"
               variants={backdropVariants}
               initial="hidden"
               animate="visible"
@@ -363,7 +363,7 @@ const ExperienceCarousel = () => {
             >
               {/* Modal Container */}
               <motion.div
-                className="relative max-w-4xl w-11/12 mx-auto"
+                className="relative max-w-4xl w-11/12 mx-auto my-8"
                 variants={modalVariants}
                 initial="hidden"
                 animate="visible"
@@ -395,7 +395,7 @@ const ExperienceCarousel = () => {
                 {/* Image Container */}
                 <div className="rounded-2xl overflow-hidden shadow-2xl">
                   <Image
-                    className="w-full h-auto object-cover"
+                    className="w-full h-auto object-contain max-h-[80vh]"
                     src={Projects[activeIndex].thumbnail}
                     alt={Projects[activeIndex].title}
                     width={1200}

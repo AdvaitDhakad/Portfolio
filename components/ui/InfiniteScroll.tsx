@@ -92,7 +92,7 @@ export const InfiniteSkillsScroller = ({
           >
             <div className="relative w-full h-full flex items-center justify-center p-2">
               <div
-                className="w-20 h-20 flex items-center justify-center"
+                className="w-20 h-20 flex items-center justify-center "
                 style={{
                   backgroundImage: `url(${item.icon})`,
                   backgroundSize: "cover",

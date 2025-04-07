@@ -1,12 +1,3 @@
-import { link } from "fs";
-import { url } from "inspector";
-
-export const navItems = [
-  { name: "Home", link: "/" },
-  { name: "Beliefs", link: "#beliefs" },
-  { name: "Projects", link: "#skills" },
-];
-
 export const gridItems = [
   {
     id: 1,
@@ -195,7 +186,7 @@ export const socialMedia = [
   {
     platform: "instagram",
     icon: "/socials/instagram.svg",
-    linkurl: "https://www.instagram.com/advaitdhakad/",
+    linkurl: "https://www.instagram.com/advait.dhakad/",
   },
 ];
 

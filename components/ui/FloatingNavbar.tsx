@@ -4,20 +4,17 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import AboutMePage from "@/components/aboutme";
 
-export const FloatingNav = ({
-  navItems,
-  className,
-}: {
-  navItems: {
-    name: string;
-    link: string;
-    icon?: JSX.Element;
-  }[];
-  className?: string;
-}) => {
+export const FloatingNav = ({ className }: { className?: string }) => {
   const [visible, setVisible] = useState(true);
   const [isMounted, setIsMounted] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+
+  // Fixed navigation items inside the component
+  const navItems = [
+    { name: "Home", link: "/" },
+    { name: "Beliefs", link: "#beliefs" },
+    { name: "Projects", link: "#skills" },
+  ];
 
   // Handle client-side hydration
   useEffect(() => {
@@ -62,6 +59,20 @@ export const FloatingNav = ({
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
+    }
+  };
+
+  // Function to handle navigation
+  const handleNavigation = (link: string) => {
+    if (link.startsWith("#")) {
+      // For anchor links, scroll to the element
+      const element = document.getElementById(link.substring(1));
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      // For regular links, navigate to the page
+      window.location.href = link;
     }
   };
 
@@ -147,8 +158,11 @@ export const FloatingNav = ({
               className={cn(
                 "relative dark:text-neutral-50 items-center flex space-x-1 text-neutral-600 dark:hover:text-neutral-300 hover:text-neutral-500 cursor-pointer"
               )}
+              onClick={() => handleNavigation(navItem.link)}
             >
-              <span className="block sm:hidden">{navItem.icon}</span>
+              {navItem.icon && (
+                <span className="block sm:hidden">{navItem.icon}</span>
+              )}
               <span className="text-sm !cursor-pointer">{navItem.name}</span>
             </div>
           ))}

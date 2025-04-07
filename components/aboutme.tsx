@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { socialMedia } from "@/data";
 import { Spotlight } from "@/components/ui/Spotlight";
+import { TextGenerateEffect } from "@/components/ui/TextGenerateEffect";
 
 interface TimelineItem {
   period: string;
@@ -37,7 +38,7 @@ const AboutMePage: React.FC = () => {
   ];
 
   return (
-    <div className="relative w-full overflow-hidden">
+    <div className="relative w-full h-full overflow-hidden">
       {/* Spotlights - Retained as requested */}
       <div>
         <Spotlight
@@ -52,9 +53,12 @@ const AboutMePage: React.FC = () => {
       </div>
 
       {/* Main content container */}
-      <div className="container mx-auto px-3 py-8 max-w-full">
+      <div className="container mx-auto px-6 py-8 max-w-full">
         <h1 className="text-5xl lg:text-7xl font-bold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 via-purple-300 to-pink-300">
-          About Me
+          <TextGenerateEffect
+            words=" About Me"
+            className="text-center text-[40px] md:text-5xl lg:text-7xl"
+          />
         </h1>
 
         {/* Grid layout modified for overlay context */}
@@ -78,9 +82,9 @@ const AboutMePage: React.FC = () => {
               </div>
             </div>
 
-            {/* Name with animated underline */}
+            {/* Name - reverted to original version with animated hover effect */}
             <h2 className="text-4xl lg:text-5xl font-bold mt-8 relative group overflow-hidden">
-              <span className="absolute inset-0 bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 to-purple-300">
+              <span className="absolute inset-0 bg-clip-text bg-gradient from-indigo-300 to-purple-300">
                 Advait Dhakad
               </span>
               <span className="relative bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 to-purple-300 transition-all duration-700 group-hover:bg-gradient-to-r group-hover:from-pink-300 group-hover:via-purple-300 group-hover:to-indigo-300">
@@ -122,13 +126,11 @@ const AboutMePage: React.FC = () => {
             </div>
           </div>
 
-          {/* Middle column - Brief introduction */}
+          {/* Middle column - Brief introduction with enhanced text visibility and blur */}
           <div className="flex flex-col justify-start">
-            <h3 className="text-3xl font-semibold mb-6 text-indigo-300">
-              My Story
-            </h3>
+            <h3 className="text-3xl font-semibold mb-6 text-white">My Story</h3>
             <div className="space-y-4">
-              <p className="text-lg lg:text-xl leading-relaxed text-slate-200 backdrop-blur-sm bg-white/5 p-6 rounded-lg hover:bg-white/10 transition-all duration-300 border-l-4 border-indigo-500 shadow-xl">
+              <p className="text-lg lg:text-xl leading-relaxed text-white backdrop-blur-xl bg-white/5 p-6 px-8 rounded-lg hover:bg-white/10 transition-all duration-300 border-l-4 border-indigo-500 shadow-xl">
                 Hey, there I am Advait Dhakad an aspiring data scientist and a
                 passionate intrest in finance and frontend development. I am a
                 self-motivated individual with a strong desire to learn and grow
@@ -136,13 +138,13 @@ const AboutMePage: React.FC = () => {
                 science, machine learning, and artificial intelligence.
               </p>
 
-              <p className="text-lg lg:text-xl leading-relaxed text-slate-300 backdrop-blur-sm bg-white/5 p-6 rounded-lg hover:bg-white/10 transition-all duration-300 border-l-4 border-purple-500 shadow-xl">
+              <p className="text-lg lg:text-xl leading-relaxed text-white backdrop-blur-xl bg-white/5 p-6 px-8 rounded-lg hover:bg-white/10 transition-all duration-300 border-l-4 border-purple-500 shadow-xl">
                 My journey started back in school in technology has been driven
                 by curiosity and a desire to build products that positively
                 ignites curosity in me.
               </p>
 
-              <p className="text-lg lg:text-xl leading-relaxed text-slate-200 backdrop-blur-sm bg-white/5 p-6 rounded-lg hover:bg-white/10 transition-all duration-300 border-l-4 border-pink-500 shadow-xl">
+              <p className="text-lg lg:text-xl leading-relaxed text-white backdrop-blur-xl bg-white/5 p-6 px-8 rounded-lg hover:bg-white/10 transition-all duration-300 border-l-4 border-pink-500 shadow-xl">
                 When I&apos;m not coding, you&apos;ll find me hiking, reading
                 sci-fi novels, or experimenting with new recipes. I&apos;m
                 always looking for opportunities to learn and grow as a
@@ -151,9 +153,9 @@ const AboutMePage: React.FC = () => {
             </div>
           </div>
 
-          {/* Right column - Timeline */}
+          {/* Right column - Timeline with modified effect - removed the pulse animation on dots */}
           <div className="relative">
-            <h3 className="text-3xl font-semibold mb-8 text-purple-300">
+            <h3 className="text-3xl font-semibold mb-8 text-white">
               My Journey
             </h3>
 
@@ -162,29 +164,29 @@ const AboutMePage: React.FC = () => {
               <div className="space-y-12">
                 {timelineItems.map((item, index) => (
                   <div key={index} className="relative group">
-                    {/* Timeline dot */}
-                    <div className="absolute -left-10 top-0 w-8 h-8 rounded-full bg-indigo-500 border-4 border-slate-900 transform -translate-x-1/2 group-hover:scale-150 group-hover:bg-purple-500 transition-all duration-500 animate-pulse"></div>
+                    {/* Timeline dot - removed animate-pulse */}
+                    <div className="absolute -left-10 top-0 w-8 h-8 rounded-full bg-indigo-500 border-4 border-slate-900 transform -translate-x-1/2 group-hover:scale-150 group-hover:bg-purple-500 transition-all duration-500"></div>
 
-                    {/* Content card */}
-                    <div className="p-6 rounded-lg bg-white/5 backdrop-blur-lg hover:bg-white/15 transition-all duration-500 group-hover:translate-x-4 shadow-lg group-hover:shadow-purple-500/20">
+                    {/* Content card with enhanced text visibility and blur */}
+                    <div className="p-6 px-8 rounded-lg bg-white/5 backdrop-blur-xl hover:bg-white/15 transition-all duration-500 group-hover:translate-x-4 shadow-lg group-hover:shadow-purple-500/20">
                       {/* Time period */}
-                      <div className="mb-2 text-indigo-300 font-medium text-xl inline-block relative overflow-hidden group-hover:text-purple-300 transition-colors duration-300">
+                      <div className="mb-2 text-white font-medium text-xl inline-block relative overflow-hidden group-hover:text-purple-300 transition-colors duration-300">
                         {item.period}
                         <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-purple-500 group-hover:w-full transition-all duration-500"></span>
                       </div>
 
                       {/* Title */}
-                      <h3 className="text-2xl font-bold group-hover:text-purple-300 transition-all duration-300">
+                      <h3 className="text-2xl font-bold text-white group-hover:text-purple-300 transition-all duration-300">
                         {item.title}
                       </h3>
 
                       {/* Institution */}
-                      <div className="text-lg text-slate-300 group-hover:text-indigo-200 transition-colors duration-300 mb-2">
+                      <div className="text-lg text-white group-hover:text-indigo-200 transition-colors duration-300 mb-2">
                         {item.institution}
                       </div>
 
                       {/* Description */}
-                      <p className="mt-3 text-slate-400 group-hover:text-slate-300 transition-colors duration-300 text-base">
+                      <p className="mt-3 text-gray-200 group-hover:text-white transition-colors duration-300 text-base">
                         {item.description}
                       </p>
                     </div>
