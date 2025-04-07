@@ -2,7 +2,6 @@
   "name": "portfolio",
   "version": "0.1.0",
   "private": true,
-  "homepage": "/",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -13,6 +12,7 @@
   "dependencies": {
     "@headlessui/react": "^2.2.0",
     "@react-three/drei": "^9.105.4",
+    "@sentry/nextjs": "^9.11.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "d3": "^7.9.0",
@@ -30,6 +30,7 @@
     "react-plotly.js": "^2.6.0",
     "reactflow": "^11.11.4",
     "recharts": "^2.15.1",
+    "sentry": "^0.1.2",
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",
     "three": "^0.163.0",
