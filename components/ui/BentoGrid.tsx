@@ -42,14 +42,14 @@ const generateData = () => {
 const initialNodes = [
   {
     id: "1",
-    data: { label: "Smart Work" },
+    data: { label: "Curosity" },
     position: { x: 100, y: 100 },
     draggable: true,
     style: { border: "2px solid black", backgroundColor: "white" },
   },
   {
     id: "2",
-    data: { label: "Curiosity" },
+    data: { label: "Smart Work" },
     position: { x: 300, y: 100 },
     draggable: true,
     style: { border: "2px solid black", backgroundColor: "white" },
@@ -120,11 +120,13 @@ export const BentoGridItem: React.FC<BentoGridItemProps> = ({
     switch (id) {
       case 1:
         return (
-          <LineChartSection
-            title={title}
-            description={description}
-            data={data}
-          />
+          <div className="absolute inset-0 z-20 pointer-events-none">
+            <LineChartSection
+              title={title}
+              description={description}
+              data={data}
+            />
+          </div>
         );
       case 2:
         return (
@@ -257,23 +259,44 @@ const FlowChartComponent: React.FC<{
   onConnect: any;
   showOverlay: boolean;
   handleReset: () => void;
-}> = ({ nodes, edges, onConnect, showOverlay, handleReset }) => (
-  <div className="flex-grow h-[80%] border border-white/20 rounded-lg overflow-hidden bg-white relative">
-    <ReactFlow nodes={nodes} edges={edges} onConnect={onConnect} fitView>
-      <Background color="#ccc" gap={16} />
-    </ReactFlow>
-    {showOverlay && (
-      <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-85">
-        <div className="text-white text-2xl mb-4">Success!</div>
-        <button
-          onClick={handleReset}
-          className="mt-4 bg-white text-black px-6 py-3 rounded-lg text-xl font-semibold shadow-lg"
-        >
-          Reset
-        </button>
-      </div>
-    )}
-  </div>
-);
+}> = ({ nodes, edges, onConnect, showOverlay, handleReset }) => {
+  const [showHint, setShowHint] = useState(edges.length === 0);
+
+  useEffect(() => {
+    // Hide hint when edges are connected
+    if (edges.length > 0) {
+      setShowHint(false);
+    }
+  }, [edges]);
+
+  return (
+    <div className="flex-grow h-[80%] border border-white/20 rounded-lg overflow-hidden bg-white relative">
+      <ReactFlow nodes={nodes} edges={edges} onConnect={onConnect} fitView>
+        <Background color="#ccc" gap={16} />
+      </ReactFlow>
+
+      {showHint && (
+        <div className="absolute inset-0 flex items-start justify-center pointer-events-none pt-10">
+          <div className="bg-black bg-opacity-70 text-white px-4 py-2 rounded-lg">
+            Connect the nodes by drwaing a line from the center of one node to
+            another.
+          </div>
+        </div>
+      )}
+
+      {showOverlay && (
+        <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-85">
+          <div className="text-white text-2xl mb-4">Success!</div>
+          <button
+            onClick={handleReset}
+            className="mt-4 bg-white text-black px-6 py-3 rounded-lg text-xl font-semibold shadow-lg"
+          >
+            Reset
+          </button>
+        </div>
+      )}
+    </div>
+  );
+};
 
 export default BentoGrid;

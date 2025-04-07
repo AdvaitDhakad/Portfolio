@@ -120,7 +120,7 @@ export const FloatingNav = ({ className }: { className?: string }) => {
             </motion.button>
 
             {/* About Me Page Content */}
-            <div className="pt-20">
+            <div>
               <AboutMePage />
             </div>
           </motion.div>

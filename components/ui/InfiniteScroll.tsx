@@ -90,13 +90,16 @@ export const InfiniteSkillsScroller = ({
             onMouseEnter={() => pauseOnHover && setIsHovered(true)}
             onMouseLeave={() => pauseOnHover && setIsHovered(false)}
           >
-            <div className="relative w-full h-full flex items-center justify-center p-2">
+            <div className="relative w-full h-full flex items-center justify-center">
               <div
-                className="w-20 h-20 flex items-center justify-center "
+                className="w-20 h-20 flex items-center justify-center"
                 style={{
                   backgroundImage: `url(${item.icon})`,
-                  backgroundSize: "cover",
+                  backgroundSize: "contain",
+                  backgroundColor: "transparent",
                   backgroundPosition: "center",
+                  objectFit: "fill",
+                  backgroundRepeat: "no-repeat",
                 }}
               />
 
