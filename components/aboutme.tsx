@@ -145,9 +145,9 @@ const AboutMePage: React.FC = () => {
               </p>
 
               <p className="text-lg lg:text-xl leading-relaxed text-white backdrop-blur-xl bg-white/5 p-6 px-8 rounded-lg hover:bg-white/10 transition-all duration-300 border-l-4 border-pink-500 shadow-xl">
-               When I&apos m not coding, I enjoy traveling and exploring new places, binge-watching TV series, movies, and anime, and 
+               When I&apos;m not coding, I enjoy traveling and exploring new places, binge-watching TV series, movies, and anime, and 
                 playing a competitive game of table tennis. I have a strong interest in investing and trading, and I actively follow 
-                the latest trends in technology, innovation, and global geopolitics. I'm always eager to broaden my perspective—both
+                the latest trends in technology, innovation, and global geopolitics. I&apos;m always eager to broaden my perspective—both
                 personally and professionally—and seek out opportunities that challenge and inspire me as a developer.
               </p>
             </div>
