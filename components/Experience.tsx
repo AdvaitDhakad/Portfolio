@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Projects } from "@/data";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
@@ -9,6 +9,34 @@ const ExperienceCarousel = () => {
   const [transitionDirection, setTransitionDirection] = useState("next");
   const [isHovered, setIsHovered] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(0);
+
+  // Track window width for responsive animations
+  useEffect(() => {
+    // Set initial width
+    setWindowWidth(window.innerWidth);
+
+    // Update width on resize
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Get responsive x-offset based on screen size
+  function getResponsiveOffset(
+    base: string,
+    sm?: string,
+    md?: string,
+    lg?: string
+  ) {
+    if (lg && windowWidth >= 1024) return lg;
+    if (md && windowWidth >= 768) return md;
+    if (sm && windowWidth >= 640) return sm;
+    return base;
+  }
 
   const handleNext = () => {
     setTransitionDirection("next");
@@ -234,17 +262,8 @@ const ExperienceCarousel = () => {
               className="absolute z-0 h-auto w-[6rem] min-w-[6rem] sm:w-[8rem] sm:min-w-[8rem] md:w-[10rem] md:min-w-[10rem] max-w-[16rem] lg:w-[14vw] blur-[2px]"
               animate={{
                 opacity: 0.5,
-                x: "-60px",
+                x: getResponsiveOffset("-60px", "-80px", "-90px", "-110px"),
                 scale: 0.7,
-                "@media (min-width: 640px)": {
-                  x: "-80px",
-                },
-                "@media (min-width: 768px)": {
-                  x: "-90px",
-                },
-                "@media (min-width: 1024px)": {
-                  x: "-110px",
-                },
               }}
               transition={{
                 duration: 0.5,
@@ -315,17 +334,8 @@ const ExperienceCarousel = () => {
               className="absolute z-0 h-auto w-[10rem] min-w-[10rem] sm:w-[14rem] sm:min-w-[14rem] md:w-[16rem] md:min-w-[16rem] lg:w-[20rem] lg:min-w-[20rem] max-w-[26rem] xl:w-[24vw] blur-[2px]"
               animate={{
                 opacity: 0.5,
-                x: "60px",
+                x: getResponsiveOffset("60px", "80px", "90px", "110px"),
                 scale: 0.7,
-                "@media (min-width: 640px)": {
-                  x: "80px",
-                },
-                "@media (min-width: 768px)": {
-                  x: "90px",
-                },
-                "@media (min-width: 1024px)": {
-                  x: "110px",
-                },
               }}
               transition={{
                 duration: 0.5,
