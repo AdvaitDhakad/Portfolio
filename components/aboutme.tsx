@@ -19,7 +19,7 @@ const AboutMePage: React.FC = () => {
       title: "School",
       institution: "The Shishukunj International School, Indore, India",
       description:
-        "Graduated with 98.3% in Commerece and Information Practices.",
+        "Graduated with 93.8% in Commerece and Information Practices.",
     },
     {
       period: "2021 - 2024",
@@ -131,11 +131,11 @@ const AboutMePage: React.FC = () => {
             <h3 className="text-3xl font-semibold mb-6 text-white">My Story</h3>
             <div className="space-y-4">
               <p className="text-lg lg:text-xl leading-relaxed text-white backdrop-blur-xl bg-white/5 p-6 px-8 rounded-lg hover:bg-white/10 transition-all duration-300 border-l-4 border-indigo-500 shadow-xl">
-                Hey, there I am Advait Dhakad an aspiring data scientist and a
-                passionate intrest in finance and frontend development. I am a
-                self-motivated individual with a strong desire to learn and grow
-                in the field of technology. I have a keen interest in data
-                science, machine learning, and artificial intelligence.
+               I am Advait Dhakad, an aspiring Data Scientist with a strong passion for technology and finance. I am a self-driven and highly 
+                motivated individual with a continuous desire to learn, innovate, and grow in the tech industry. My interests span across data science, 
+                machine learning, and artificial intelligence, as well as front-end and back-end development. I enjoy building intuitive user
+                interfaces and also thrive in designing robust, scalable backend systems. With a well-rounded skill set and a commitment to excellence, 
+                I aim to contribute meaningfully to impactful, data-driven, and user-centric solutions.
               </p>
 
               <p className="text-lg lg:text-xl leading-relaxed text-white backdrop-blur-xl bg-white/5 p-6 px-8 rounded-lg hover:bg-white/10 transition-all duration-300 border-l-4 border-purple-500 shadow-xl">
@@ -145,10 +145,10 @@ const AboutMePage: React.FC = () => {
               </p>
 
               <p className="text-lg lg:text-xl leading-relaxed text-white backdrop-blur-xl bg-white/5 p-6 px-8 rounded-lg hover:bg-white/10 transition-all duration-300 border-l-4 border-pink-500 shadow-xl">
-                When I&apos;m not coding, you&apos;ll find me hiking, reading
-                sci-fi novels, or experimenting with new recipes. I&apos;m
-                always looking for opportunities to learn and grow as a
-                developer.
+               When I&apos;m not coding, I enjoy traveling and exploring new places, binge-watching TV series, movies, and anime, and 
+                playing a competitive game of table tennis. I have a strong interest in investing and trading, and I actively follow 
+                the latest trends in technology, innovation, and global geopolitics. I&apos;m always eager to broaden my perspective—both
+                personally and professionally—and seek out opportunities that challenge and inspire me as a developer.
               </p>
             </div>
           </div>
