@@ -86,7 +86,6 @@ const ExperienceCarousel = () => {
   // Glow animation variant for active image
   const glowVariant = {
     glowing: {
-      // Changed from "animate" to "glowing"
       boxShadow: [
         "0 0 10px 2px rgba(235, 87, 87, 0.5)",
         "0 0 20px 5px rgba(235, 87, 87, 0.7)",
@@ -155,13 +154,15 @@ const ExperienceCarousel = () => {
 
   return (
     <div className="flex w-full flex-col items-center justify-center pt-5">
-      <div className="relative w-5/6 grid grid-cols-1 items-center justify-between bg-gradient-to-r from-[#04071d] to-[#0c0e23] p-4 px-32 text-white md:grid-cols-2 md:grid-rows-1 md:gap-0 md:px-10 lg:px-16">
+      <div className="relative w-full sm:w-11/12 md:w-5/6 grid grid-cols-1 items-center justify-between bg-gradient-to-r from-[#04071d] to-[#0c0e23] p-4 px-4 sm:px-6 text-white md:grid-cols-2 md:grid-rows-1 md:gap-4 lg:gap-6 lg:px-16 rounded-lg">
         {/* Left column with text */}
-        <div className="relative flex items-center justify-center">
-          {/* Previous Button - Left side of text column */}
+        <div className="relative flex items-center justify-center mb-8 md:mb-0">
+          {/* Previous Button - Responsive positioning */}
           <button
-            className="absolute left-0 z-30 flex h-16 w-16 items-center justify-center transition-all duration-300 ease-in-out hover:scale-105 -translate-x-20"
+            className="absolute left-0 z-30 flex h-12 w-12 sm:h-14 sm:w-14 md:h-16 md:w-16 items-center justify-center transition-all duration-300 ease-in-out hover:scale-105 
+                      -translate-x-4 sm:-translate-x-8 md:-translate-x-12 lg:-translate-x-20"
             onClick={handlePrevious}
+            aria-label="Previous project"
           >
             <svg
               width="32"
@@ -169,7 +170,7 @@ const ExperienceCarousel = () => {
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="h-10 w-10"
+              className="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10"
             >
               <path
                 d="M15 18L9 12L15 6"
@@ -186,25 +187,25 @@ const ExperienceCarousel = () => {
             variants={textContainerVariant}
             initial="hidden"
             animate="visible"
-            className="flex flex-col items-center justify-center p-4 text-center md:pr-2"
+            className="flex flex-col items-center justify-center p-2 sm:p-3 md:p-4 text-center md:pr-2 max-w-md mx-auto"
           >
-            <div className="pb-4 w-full">
+            <div className="pb-2 sm:pb-3 md:pb-4 w-full">
               <motion.h1
                 variants={titleVariants}
-                className="mb-4 text-3xl font-extrabold md:text-5xl"
+                className="mb-2 sm:mb-3 md:mb-4 text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-extrabold"
               >
                 {Projects[activeIndex].title}
               </motion.h1>
             </div>
-            <div className="pb-6 w-full">
+            <div className="pb-3 sm:pb-4 md:pb-6 w-full">
               <motion.p
                 variants={descVariants}
-                className="text-lg font-light leading-relaxed md:text-xl"
+                className="text-sm sm:text-base md:text-lg lg:text-xl font-light leading-relaxed"
               >
                 {Projects[activeIndex].desc}
               </motion.p>
               {/* GitHub Logo with clickable link */}
-              <div className="relative inline-block mt-4 group">
+              <div className="relative inline-block mt-2 sm:mt-3 md:mt-4 group">
                 <a
                   href={Projects[activeIndex].gitlink}
                   target="_blank"
@@ -216,7 +217,7 @@ const ExperienceCarousel = () => {
                     alt="GitHub"
                     width={40}
                     height={40}
-                    className="w-14 h-14 filter invert opacity-80 hover:opacity-100 transition-all duration-300 hover:scale-110"
+                    className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 filter invert opacity-80 hover:opacity-100 transition-all duration-300 hover:scale-110"
                   />
                 </a>
               </div>
@@ -226,15 +227,24 @@ const ExperienceCarousel = () => {
 
         {/* Right column with images */}
         <div className="relative flex items-center justify-center">
-          {/* Images Container */}
-          <div className="relative flex h-[40rem] items-center justify-center md:h-[38rem]">
-            {/* Previous Item */}
+          {/* Images Container - Responsive heights for different screens */}
+          <div className="relative flex h-[28rem] sm:h-[32rem] md:h-[34rem] lg:h-[38rem] xl:h-[40rem] items-center justify-center">
+            {/* Previous Item - Responsive sizes and positioning */}
             <motion.div
-              className="absolute z-0 h-auto w-[10rem] min-w-[10rem] max-w-[16rem] md:w-[14vw] blur-[2px]"
+              className="absolute z-0 h-auto w-[6rem] min-w-[6rem] sm:w-[8rem] sm:min-w-[8rem] md:w-[10rem] md:min-w-[10rem] max-w-[16rem] lg:w-[14vw] blur-[2px]"
               animate={{
                 opacity: 0.5,
-                x: "-110px",
+                x: "-60px",
                 scale: 0.7,
+                "@media (min-width: 640px)": {
+                  x: "-80px",
+                },
+                "@media (min-width: 768px)": {
+                  x: "-90px",
+                },
+                "@media (min-width: 1024px)": {
+                  x: "-110px",
+                },
               }}
               transition={{
                 duration: 0.5,
@@ -242,7 +252,7 @@ const ExperienceCarousel = () => {
               }}
             >
               <Image
-                className="h-auto w-full rounded-[2rem] object-cover"
+                className="h-auto w-full rounded-[1rem] sm:rounded-[1.5rem] md:rounded-[2rem] object-cover"
                 alt={Projects[getAdjacentIndex(-1)].title}
                 src={Projects[getAdjacentIndex(-1)].thumbnail}
                 width={700}
@@ -250,9 +260,9 @@ const ExperienceCarousel = () => {
               />
             </motion.div>
 
-            {/* Current Item */}
+            {/* Current Item - Responsive sizes */}
             <motion.div
-              className="absolute z-10 h-auto w-[22rem] min-w-[22rem] max-w-[28rem] md:w-[26vw] overflow-hidden rounded-[2rem] cursor-pointer"
+              className="absolute z-10 h-auto w-[14rem] min-w-[14rem] sm:w-[18rem] sm:min-w-[18rem] md:w-[20rem] md:min-w-[20rem] lg:w-[22rem] lg:min-w-[22rem] max-w-[28rem] xl:w-[26vw] overflow-hidden rounded-[1rem] sm:rounded-[1.5rem] md:rounded-[2rem] cursor-pointer"
               animate={{
                 opacity: 1,
                 x: "0",
@@ -291,7 +301,7 @@ const ExperienceCarousel = () => {
                 className="w-full h-full"
               >
                 <Image
-                  className="h-auto w-full rounded-[2rem] object-cover shadow-lg transition-all duration-300"
+                  className="h-auto w-full rounded-[1rem] sm:rounded-[1.5rem] md:rounded-[2rem] object-cover shadow-lg transition-all duration-300"
                   alt={Projects[activeIndex].title}
                   src={Projects[activeIndex].thumbnail}
                   width={600}
@@ -300,13 +310,22 @@ const ExperienceCarousel = () => {
               </motion.div>
             </motion.div>
 
-            {/* Next Item */}
+            {/* Next Item - Responsive sizes and positioning */}
             <motion.div
-              className="absolute z-0 h-auto w-[20rem] min-w-[20rem] max-w-[26rem] md:w-[24vw] blur-[2px]"
+              className="absolute z-0 h-auto w-[10rem] min-w-[10rem] sm:w-[14rem] sm:min-w-[14rem] md:w-[16rem] md:min-w-[16rem] lg:w-[20rem] lg:min-w-[20rem] max-w-[26rem] xl:w-[24vw] blur-[2px]"
               animate={{
                 opacity: 0.5,
-                x: "110px",
+                x: "60px",
                 scale: 0.7,
+                "@media (min-width: 640px)": {
+                  x: "80px",
+                },
+                "@media (min-width: 768px)": {
+                  x: "90px",
+                },
+                "@media (min-width: 1024px)": {
+                  x: "110px",
+                },
               }}
               transition={{
                 duration: 0.5,
@@ -314,7 +333,7 @@ const ExperienceCarousel = () => {
               }}
             >
               <Image
-                className="h-auto w-full rounded-[2rem] object-cover"
+                className="h-auto w-full rounded-[1rem] sm:rounded-[1.5rem] md:rounded-[2rem] object-cover"
                 alt={Projects[getAdjacentIndex(1)].title}
                 src={Projects[getAdjacentIndex(1)].thumbnail}
                 width={600}
@@ -323,10 +342,12 @@ const ExperienceCarousel = () => {
             </motion.div>
           </div>
 
-          {/* Next Button - Right side of image column */}
+          {/* Next Button - Responsive positioning */}
           <button
-            className="absolute right-0 z-30 flex h-16 w-16 items-center justify-center transition-all duration-300 ease-in-out hover:scale-105 translate-x-20"
+            className="absolute right-0 z-30 flex h-12 w-12 sm:h-14 sm:w-14 md:h-16 md:w-16 items-center justify-center transition-all duration-300 ease-in-out hover:scale-105 
+                      translate-x-4 sm:translate-x-8 md:translate-x-12 lg:translate-x-20"
             onClick={handleNext}
+            aria-label="Next project"
           >
             <svg
               width="32"
@@ -334,7 +355,7 @@ const ExperienceCarousel = () => {
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="h-10 w-10"
+              className="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10"
             >
               <path
                 d="M9 18L15 12L9 6"
@@ -348,7 +369,55 @@ const ExperienceCarousel = () => {
         </div>
       </div>
 
-      {/* Modal with backdrop */}
+      {/* Mobile Navigation Buttons for smaller screens */}
+      <div className="flex justify-center space-x-8 mt-4 md:hidden">
+        <button
+          className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-[#04071d] to-[#0c0e23] shadow-md transition-all duration-300 ease-in-out hover:scale-105"
+          onClick={handlePrevious}
+          aria-label="Previous project (mobile)"
+        >
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+          >
+            <path
+              d="M15 18L9 12L15 6"
+              stroke="#eb5757"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+        <button
+          className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-[#04071d] to-[#0c0e23] shadow-md transition-all duration-300 ease-in-out hover:scale-105"
+          onClick={handleNext}
+          aria-label="Next project (mobile)"
+        >
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+          >
+            <path
+              d="M9 18L15 12L9 6"
+              stroke="#eb5757"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+      </div>
+
+      {/* Modal with backdrop - Improved responsiveness */}
       <AnimatePresence>
         {showModal && (
           <>
@@ -361,19 +430,20 @@ const ExperienceCarousel = () => {
               exit="exit"
               onClick={closeModal}
             >
-              {/* Modal Container */}
+              {/* Modal Container - Better responsive sizing */}
               <motion.div
-                className="relative max-w-4xl w-11/12 mx-auto my-8"
+                className="relative max-w-xs sm:max-w-sm md:max-w-2xl lg:max-w-4xl w-11/12 mx-auto my-4 sm:my-6 md:my-8"
                 variants={modalVariants}
                 initial="hidden"
                 animate="visible"
                 exit="exit"
                 onClick={(e) => e.stopPropagation()}
               >
-                {/* Close Button */}
+                {/* Close Button - Better positioning on small screens */}
                 <button
-                  className="absolute -top-12 right-0 z-10 p-2 rounded-full bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 transition-all duration-300"
+                  className="absolute -top-10 sm:-top-12 right-0 z-10 p-2 rounded-full bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 transition-all duration-300"
                   onClick={closeModal}
+                  aria-label="Close modal"
                 >
                   <svg
                     width="24"
@@ -393,9 +463,9 @@ const ExperienceCarousel = () => {
                 </button>
 
                 {/* Image Container */}
-                <div className="rounded-2xl overflow-hidden shadow-2xl">
+                <div className="rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl">
                   <Image
-                    className="w-full h-auto object-contain max-h-[80vh]"
+                    className="w-full h-auto object-contain max-h-[50vh] sm:max-h-[60vh] md:max-h-[70vh] lg:max-h-[80vh]"
                     src={Projects[activeIndex].thumbnail}
                     alt={Projects[activeIndex].title}
                     width={1200}
@@ -404,9 +474,9 @@ const ExperienceCarousel = () => {
                   />
                 </div>
 
-                {/* Project Title */}
-                <div className="mt-4 text-center">
-                  <h2 className="text-2xl font-bold text-white">
+                {/* Project Title - Responsive text size */}
+                <div className="mt-3 sm:mt-4 text-center">
+                  <h2 className="text-xl sm:text-2xl font-bold text-white">
                     {Projects[activeIndex].title}
                   </h2>
                 </div>

@@ -14,7 +14,7 @@ const SkillsandProject = () => {
         and
         <span className="text-purple"> Projects</span>
       </h1>
-      <div className="h-[20vh] pt-16 rounded-md flex-col flex  items-center justify-center ">
+      <div className="h-[20vh] min-h-[20vh] max-h-[30vh] pt-30 rounded-md flex-col flex items-center justify-center">
         <InfiniteSkillsScroller
           items={skills}
           direction="right"

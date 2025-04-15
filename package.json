@@ -17,6 +17,7 @@
     "clsx": "^2.1.0",
     "d3": "^7.9.0",
     "framer-motion": "^11.0.25",
+    "iconoir-react": "^7.11.0",
     "lottie-web": "^5.12.2",
     "lucide-react": "^0.365.0",
     "mini-svg-data-uri": "^1.4.4",
