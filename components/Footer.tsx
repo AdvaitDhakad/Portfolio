@@ -158,7 +158,7 @@ const Footer = () => {
                       textShadow: "0 0 8px rgba(255, 255, 255, 0.5)",
                     }}
                   >
-                    Youtuber
+                    Template
                   </motion.h5>
                   <motion.a
                     href="https://www.youtube.com/watch?v=FTH6Dn3AyIQ"
