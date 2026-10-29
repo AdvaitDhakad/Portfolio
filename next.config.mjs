@@ -1,13 +1,13 @@
 import {withSentryConfig} from "@sentry/nextjs";
-/** @type {import('next').NextConfig} */
-// const nextConfig = {
-//   output: 'export',
-//   typescript: {
-//     ignoreBuildErrors: true,
-//   },
-// };
 
-const nextConfig = {};
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  output: "export",
+  images: {
+    unoptimized: true,
+  },
+};
+
 export default withSentryConfig(withSentryConfig(nextConfig, {
 // For all available options, see:
 // https://github.com/getsentry/sentry-webpack-plugin#options
